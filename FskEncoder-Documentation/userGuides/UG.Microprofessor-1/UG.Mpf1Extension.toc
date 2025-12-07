@@ -1,0 +1,5 @@
+\contentsline {section}{\numberline {1}Description}{2}{}%
+\contentsline {section}{\numberline {2}GUI}{2}{}%
+\contentsline {section}{\numberline {3}Installation}{2}{}%
+\contentsline {section}{\numberline {4}Configuration}{3}{}%
+\contentsline {section}{\numberline {A}Mpf-1 encoding protocol}{4}{}%

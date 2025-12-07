@@ -1,0 +1,54 @@
+\contentsline {section}{\numberline {1}Project setup}{4}{}%
+\contentsline {subsection}{\numberline {1.1}3pty Libraries}{4}{}%
+\contentsline {subsection}{\numberline {1.2}Default configuration}{4}{}%
+\contentsline {subsection}{\numberline {1.3}Building}{4}{}%
+\contentsline {section}{\numberline {2}Architectural overview}{5}{}%
+\contentsline {subsection}{\numberline {2.1}Project structure}{7}{}%
+\contentsline {subsection}{\numberline {2.2}Application part}{8}{}%
+\contentsline {subsection}{\numberline {2.3}Packages of the 'src' folder}{8}{}%
+\contentsline {subsubsection}{\numberline {2.3.1}application}{8}{}%
+\contentsline {subsubsection}{\numberline {2.3.2}control}{8}{}%
+\contentsline {subsubsection}{\numberline {2.3.3}control.gui}{8}{}%
+\contentsline {subsubsection}{\numberline {2.3.4}control.validator}{9}{}%
+\contentsline {subsubsection}{\numberline {2.3.5}extension}{9}{}%
+\contentsline {subsubsection}{\numberline {2.3.6}extension.control}{9}{}%
+\contentsline {subsubsection}{\numberline {2.3.7}extension.encoder}{9}{}%
+\contentsline {subsubsection}{\numberline {2.3.8}extension.factory}{9}{}%
+\contentsline {subsubsection}{\numberline {2.3.9}extension.model}{9}{}%
+\contentsline {subsubsection}{\numberline {2.3.10}extension.protocol}{10}{}%
+\contentsline {subsubsection}{\numberline {2.3.11}extension.sound}{10}{}%
+\contentsline {subsubsection}{\numberline {2.3.12}extension.source}{10}{}%
+\contentsline {subsubsection}{\numberline {2.3.13}extension.target}{10}{}%
+\contentsline {subsubsection}{\numberline {2.3.14}extension.view.gui}{10}{}%
+\contentsline {subsubsection}{\numberline {2.3.15}model}{10}{}%
+\contentsline {subsubsection}{\numberline {2.3.16}protocol}{10}{}%
+\contentsline {subsubsection}{\numberline {2.3.17}sound}{11}{}%
+\contentsline {subsubsection}{\numberline {2.3.18}view}{11}{}%
+\contentsline {subsubsection}{\numberline {2.3.19}view.gui}{11}{}%
+\contentsline {subsection}{\numberline {2.4}Extensions part}{11}{}%
+\contentsline {subsubsection}{\numberline {2.4.1}source.bin}{11}{}%
+\contentsline {subsubsection}{\numberline {2.4.2}source.ihx}{11}{}%
+\contentsline {subsubsection}{\numberline {2.4.3}source.x8}{12}{}%
+\contentsline {subsubsection}{\numberline {2.4.4}target.microprofessor1}{12}{}%
+\contentsline {subsubsection}{\numberline {2.4.5}target.z80trainer}{12}{}%
+\contentsline {section}{\numberline {3}API}{12}{}%
+\contentsline {subsection}{\numberline {3.1}Functional interface}{13}{}%
+\contentsline {subsection}{\numberline {3.2}Extension instantiation}{13}{}%
+\contentsline {subsection}{\numberline {3.3}Target system extension}{13}{}%
+\contentsline {subsubsection}{\numberline {3.3.1}TargetSystemExtension}{16}{}%
+\contentsline {subsubsection}{\numberline {3.3.2}TargetSystemExtensionGui}{16}{}%
+\contentsline {subsubsection}{\numberline {3.3.3}TargetSystemExtensionControl}{16}{}%
+\contentsline {subsubsection}{\numberline {3.3.4}TargetSystemProtocol}{18}{}%
+\contentsline {subsection}{\numberline {3.4}Input reader}{18}{}%
+\contentsline {subsubsection}{\numberline {3.4.1}ReaderExtension}{20}{}%
+\contentsline {subsubsection}{\numberline {3.4.2}MemoryMapGui}{20}{}%
+\contentsline {subsubsection}{\numberline {3.4.3}ReaderExtensionControl}{20}{}%
+\contentsline {subsubsection}{\numberline {3.4.4}Reader}{21}{}%
+\contentsline {subsubsection}{\numberline {3.4.5}MemoryRegionBuilder}{21}{}%
+\contentsline {subsubsection}{\numberline {3.4.6}MemoryRegion}{21}{}%
+\contentsline {subsubsection}{\numberline {3.4.7}MemoryMap}{21}{}%
+\contentsline {subsubsection}{\numberline {3.4.8}Record}{21}{}%
+\contentsline {section}{\numberline {A}Protocol implementation}{21}{}%
+\contentsline {section}{\numberline {B}Nomenclature}{26}{}%
+\contentsline {subsection}{\numberline {B.1}Keywords}{26}{}%
+\contentsline {subsection}{\numberline {B.2}UML grapics}{26}{}%

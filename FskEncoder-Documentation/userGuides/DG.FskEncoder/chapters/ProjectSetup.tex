@@ -1,0 +1,48 @@
+The project is split into two parts:
+
+\begin{enumerate}
+
+	\item The FskEncoder-Application, which is only a 'mainframe' and needs at least one input file reader and one target system extension to be ready for work. It can be downloaded from Github \\
+	\texttt{https://github.com/kamaso-macha/FskEncoder-Application}.
+	
+	\item The FskEncoder-Extension, which serves the different file reader and target system extensions. This project can also be downloaded from Github using the URL \\
+	\texttt{https://github.com/kamaso-macha/FskEncoder-Extensions}.
+
+\end{enumerate}
+
+
+%===============================================================================
+
+\subsection{3pty Libraries}
+
+External (3pty) libraries can be used but it's a good advice not to overdo it. This means, that if there is a low effort to write the code for a functionality, then do it instead of acquiring and installing an external library. 
+\\
+
+3pty libraries \should be imported by Maven. Only if there is no Maven repository for the required library, a manual download into the directory \texttt{./lib} is permitted and the library must be manually added to the build path. However, this exception \must be documented in the extension's documentation.
+
+%===============================================================================
+
+\subsection{Default configuration}
+
+The \texttt{./cfg} directory contains a default Plugin.properties file which defines the built-in extension modules. It \must be left unchanged when building and distributing extensions. Instead, provide the extension configuration in a file named \texttt{<extension\_name>.properties}.
+\\
+
+It's also always welcome to add a readme file containing the code needed to patch the Fskencoder.bat file. That's in particular the extension of the class path for the extension itself and where applicable the class path of the used libraries.
+
+%===============================================================================
+
+\subsection{Building}
+
+Apache ANT is used for building.
+\\
+
+For each extension, a buildfile \must be provided in the directory \texttt{./build}. This buildfile is responsible for the build of only one specific extension and \should be named after the extension e.g.
+\texttt{BinReaderExtension.xml} for the \textit{BinReaderExtension}.
+\\
+
+A second level buildfile \texttt{BuildExtensions.xml} in the projects root directory builds \textbf{all} extensions by iterating over the files in the \texttt{./build} directory.
+\\
+
+Commonly used properties and macros are put into the file \\
+\texttt{ExtensionsBuildSupport.xml}.
+

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>700</x>
+      <y>336</y>
+      <w>119</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+Package 
+extension.encoder</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>700</y>
+      <w>210</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>/BitEncoder/
+--
+# waveCycleEncoder : WaveCycleEncoder
+--
+ + BitEncoder(WaveCycleEncoder)
+ + encode(int, int): ByteBuffer
+/ # encodeHighBit(int): ByteBuffer/
+/ # encodeLowBit(int): ByteBuffer/
+/ + getSampleBufferSize(): int/
+^+ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>126</y>
+      <w>63</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+BitOrder
+--
+LSB_MSB
+MSB_LSB
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>756</x>
+      <y>126</y>
+      <w>63</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+BitValue
+--
+LOW
+HIGH</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>686</x>
+      <y>224</y>
+      <w>119</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+ByteOrder
+--
+LITTLE_ENDIAN  
+/ low byte,  high byte /
+
+BIG_ENDIAN     
+/ high byte, low byte /
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>336</x>
+      <y>70</y>
+      <w>266</w>
+      <h>329</h>
+    </coordinates>
+    <panel_attributes>Encoder
+--
+_SAMPLE_BUFFER_SIZE_NOT_SET : String_
+# bitEncoder : BitEncoder
+# bitOrder : BitOrder
+# byteOrder : ByteOrder
+# sampleBuffer : ByteBuffer
+# silenceEncoder : SilenceEncoder
+# startBitSamples : ByteBuffer
+# stopBitSamples : ByteBuffer
+# waveCycleEncoder : WaveCycleEncoder
+--
+ + Encoder(BitEncoder, ByteOrder, BitOrder)
+ + withSilenceEncoder(SilenceEncoder): Encoder
+ + withStartBits(int, BitValue): Encoder
+ + withStopBits(int, BitValue): Encoder
+ + withWaveCycleEncoder(WaveCycleEncoder): Encoder
+
+ + encodeBit(byte, int): void
+ + encodeByte(byte, boolean): void
+ + encodeByteBuffer(ByteBuffer, boolean): void
+ + encodeSilence(int): void
+ + encodeWaveCycle: void
+ + encodeWord(int, boolean): void
+ + getSampleBuffer(): ByteBuffer
+ + getSampleSize(): int
+ # rewindBuffer(ByteBuffer): void
+ + setBufferSize(int): void
+^+ toString(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>308</x>
+      <y>532</y>
+      <w>210</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>FskBitEncoder
+--
+# highBitFrequency : int
+# lowBitFrequency : int
+--
+ + FskBitEncoder(int, int, WaveCycleEncoder)
+^# prepareSampleBuffers(): void
+^+ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>679</y>
+      <w>210</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>/FullCycleBitEncoder/
+--
+# highBitSamples : ByteBuffer
+# lowBitSamples : ByteBuffer
+--
+ + FullCycleBitEncoder(WaveCycleEncoder)
+^# encodeHighBit(int): ByteBuffer
+^# encodeLowBit(int): ByteBuffer
+ # fillSampleBuffer(ByteBuffer, int): ByteBuffer
+^+ getSampleBufferSize(): int
+/ # prepareSampleBuffers(): void/
+^+ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>70</x>
+      <y>532</y>
+      <w>210</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>SilenceEncoder
+--
+samplingRate : int
+--
+ + SilenceEncoder(int)
+ + encode(int): ByteBuffer
+^+ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>574</x>
+      <y>532</y>
+      <w>210</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>WaveCycleEncoder
+--
+samplingRate : int
+--
+ + WaveCycleEncoder(int)
+ + encode(int, int): ByteBuffer
+^+ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>616</x>
+      <y>602</y>
+      <w>21</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>413</x>
+      <y>749</y>
+      <w>105</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>371</x>
+      <y>616</y>
+      <w>21</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>539</x>
+      <y>392</y>
+      <w>21</w>
+      <h>322</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;440.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>581</x>
+      <y>392</y>
+      <w>21</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;200.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>175</x>
+      <y>392</y>
+      <w>203</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;200.0;270.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>364</x>
+      <y>434</y>
+      <w>175</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>Note:
+Encoder helds a reference
+to a BitEncoder but this
+reference is always an instance
+of a concret implementation
+like FskBitEncoder or -in the
+Mpf-1 protocoll - aMpf1BitEncoder.</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

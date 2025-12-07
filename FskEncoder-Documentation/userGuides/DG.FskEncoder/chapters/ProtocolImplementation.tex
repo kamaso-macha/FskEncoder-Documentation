@@ -1,0 +1,129 @@
+How to implement an protocol?
+\\
+
+Lets study this on the Z80-Trainer protocol which is very simple to implement.
+\\
+
+First, we have to know the encoding rules which are defined by the systems vendor. For this example they are as:
+
+\begin{verbatim}
+
+			SEL Z80-Trainer tape format
+
+
+			Bit format
+			--------------------------------------------------------------------------------
+			
+			'0'   1 cycle   568,18Hz (1760µs)
+			'1'   1 cycle  1136,36Hz ( 880µs)
+
+			
+			Envelope (Byte format)
+			--------------------------------------------------------------------------------
+			
+			  1 start bit '0'
+			  8 data bits, lsb first (b0 to b7)
+			  3 stop bit '1'
+			
+			
+			File format
+			--------------------------------------------------------------------------------
+			
+			 1.    12'288   bit '1'   Lead sync                       ->	leadIn
+			 
+			 2.         1   bit '0'   Measurement                     ->	syncPatern
+			 3.        16   bit '1'     for period length             +>
+			    
+			 4.         1   envlp     Programm number - high byte	    ->	programNumber
+			 5.         1   envlp     Programm number - low byte      +>
+			          
+			 6.         1   envlp     Start address - high byte       ->	startAddress
+			 7.         1   envlp     Start address - low byte        +>
+			 8.         1   envlp     Start address checksum          +>
+			          
+			 6.         1   envlp     Data block length - high byte   ->	dataBlockLength
+			 7.         1   envlp     Data block length - low byte    +>
+			 8.         1   envlp     Data block length checksum      +>
+			    
+			 9.        16   bit '1'   Idle time for chksum calculation  ->	idleTime
+			    
+			10.         n   envlp     Data block                      ->	dataBlock
+			
+			11.         1   envlp     Data block checksum             +>
+
+\end{verbatim}
+
+\begin{itemize}[align=left,labelwidth=\widthof{(MMMMMM)},leftmargin=\labelwidth+\labelsep]
+
+	\item[\texttt{Bit format}] We can see, that there is a definition of how to encode a single bit. In this case it is one single wave cycle with a spcific frequency.
+	
+	\item[\texttt{Envelope}] Next is the definition of an \textit{envelope}, which consists of one start bit, 8 databits in a specific order and one stop bit.
+
+	\item[\texttt{File format}] The previously defined bit- and envelop formats are put together to build a transmission protocol. In this example, there are 11 different sections defined as shown above.
+
+\end{itemize}
+
+Next, we take a closer look to the \texttt{extension.encoder} package, its classes and usage.
+
+\begin{figure}[h!]
+
+		\includegraphics[width=\linewidth,height=\textheight,keepaspectratio]{./images/cls.extension.encoder.png}
+
+    \caption{Package extension.encoder class diagram}
+
+    \label{fig:cls-extension-encoder}
+		
+\end{figure}
+
+\begin{figure}[h!]
+
+		\includegraphics[width=\linewidth,height=\textheight,keepaspectratio]{./images/ext.seq.ProtocolEncoding.png}
+
+    \caption{Sequence diagram of bit encoding}
+
+    \label{fig:ext-seq-ProtocolEncoding}
+		
+\end{figure}
+
+Let's walk trouh it from bottom up to the top and start with the abstract class \texttt{BitEncoder}. 
+\\
+
+Because the encoding strategy preferes copying a couple of bytes over calculating them over and over, we use tiny sound sample buffers - so called \textit{atoms}\, - one each for a single '0' and '1' bit.
+
+The concrete implementation of the abstract \texttt{BitEncoder} must be able to produce these atoms, according to the protocol specification. In our example, this is an easy job and is done by the \texttt{FskBitEncoder}. 
+\\
+
+The \texttt{FskBitEncoder} has no big logic. It's purpose is to define the FSK frequencies, build the \textit{atoms} and to provide a class with a suitable and self-explantory name.
+\\
+
+It's abstract base class \texttt{FullCycleBitEncoder} has a abstract method \\
+\texttt{prepareSampleBuffers()} which is implemented in \texttt{FskBitEncoder}. By convention, this method \must be implemented in the derived class and \must be calld in it's constructor! It uses an instance of \texttt{WaveCycleEncoder} (held by super class \texttt{BitEncoder}) to build the sound samples for the atoms. 
+\\
+
+These atoms are held in the super class \texttt{FullCycleBitEncoder} because of the fact that the \texttt{encodeHigBit()} and \texttt{encodeLowBit()} methods are located in this class (as they are common to all bit encoders).
+\\
+
+Beside the bit encoding exists the \texttt{SilenceEncoder} who is responsible to create a buffer filled with '0' bytes if a protocoll needs to send silence for a defined time.
+\\
+
+The class \texttt{Encoder} is used by a protocol implementation to encode all defined parts and sections. In this example that are the numbers 1 to 11 in the \textit{File format} section. For this, it is set up with instances of the required encoders at instantiation (usually in the specific implementation of the protocol).
+
+\newpage
+
+Three enum classes complete the \texttt{encoder} package and define common used terms for typesafety:
+
+\begin{itemize}[align=left,labelwidth=\widthof{(MMMMMM)},leftmargin=\labelwidth+\labelsep]
+
+	\item[\texttt{BitValue}] defines simply the two possible states of a bit.
+	
+	\item[\texttt{BitOrder}] defines which bit of a byte is encoded first.
+	
+	\item[\texttt{ByteOrder}]	defines the \textit{endianess} of words.
+
+\end{itemize}
+
+
+Please feel free and take a look to the two protocols Z80-Trainer and Mpf1, which can be found in the sources of that extensions.
+\\
+
+The Mpf1 protocol uses a specific bit encoder and is a good starting point for the implementation of a more complex encoding.
