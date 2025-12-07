@@ -12,12 +12,12 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1327
-NormalPos.bottom=817
+NormalPos.bottom=883
 Class=LaTeXView
 Document=UG.Ihx8Reader.tex
 
 [Frame0_View0,0]
-TopLine=144
+TopLine=141
 Cursor=5893
 
 [SessionInfo]

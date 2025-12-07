@@ -12,7 +12,7 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1327
-NormalPos.bottom=817
+NormalPos.bottom=883
 Class=LaTeXView
 Document=UG.BinReaderExtension.tex
 
